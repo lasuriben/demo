@@ -29,21 +29,6 @@ viewServices?.addEventListener('click', () => {
   servicesGrid?.classList.toggle('show-all', !isExpanded);
 });
 
-const reviewCards = [...document.querySelectorAll('.review-card')];
-const reviewDots = [...document.querySelectorAll('.review-dots button')];
-let reviewPage = 0;
-
-function showReviewPage(page) {
-  const totalPages = Math.ceil(reviewCards.length / 2);
-  reviewPage = (page + totalPages) % totalPages;
-  reviewCards.forEach((card, index) => { card.hidden = Math.floor(index / 2) !== reviewPage; });
-  reviewDots.forEach((dot, index) => dot.classList.toggle('active', index === reviewPage));
-}
-
-document.querySelector('.review-prev')?.addEventListener('click', () => showReviewPage(reviewPage - 1));
-document.querySelector('.review-next')?.addEventListener('click', () => showReviewPage(reviewPage + 1));
-reviewDots.forEach((dot, index) => dot.addEventListener('click', () => showReviewPage(index)));
-
 document.querySelector('#current-year').textContent = new Date().getFullYear();
 
 const bookingModal = document.querySelector('.booking-modal');
